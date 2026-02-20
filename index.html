@@ -1,0 +1,540 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Nagabharana K Jamadagni — QA Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+:root{--bg:#0a0a0a;--surf:#131313;--brd:#222;--acc:#e8ff00;--blu:#4a9eff;--txt:#f0f0f0;--bod:#c0c0c0;--dim:#888;--mono:'Space Mono',monospace;}
+body{background:var(--bg);color:var(--txt);font-family:var(--mono);font-size:13px;line-height:1.6;overflow-x:hidden;cursor:none;}
+#cv{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;display:block;}
+#sl{position:fixed;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0,transparent 3px,rgba(0,0,0,.05) 3px,rgba(0,0,0,.05) 4px);}
+.cdot,.cring{position:fixed;pointer-events:none;transform:translate(-50%,-50%);display:none;}
+.cdot{width:10px;height:10px;background:var(--acc);border-radius:50%;z-index:9999;mix-blend-mode:difference;}
+.cring{width:36px;height:36px;border:1px solid var(--acc);border-radius:50%;z-index:9998;mix-blend-mode:difference;}
+@media(pointer:fine){body{cursor:none;}.cdot,.cring{display:block;}}
+nav,section,.tk,footer,.mm{position:relative;z-index:2;}
+nav{position:fixed;top:0;width:100%;z-index:200;padding:16px 44px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--brd);background:rgba(10,10,10,.92);backdrop-filter:blur(16px);}
+.nlogo{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--acc);font-weight:700;}
+.nlinks{display:flex;gap:24px;list-style:none;}
+.nlinks a{color:#aaa;text-decoration:none;font-size:10px;letter-spacing:.14em;text-transform:uppercase;transition:color .2s;}
+.nlinks a:hover{color:var(--txt);}
+.nright{display:flex;align-items:center;gap:16px;}
+.nstat{display:flex;align-items:center;gap:7px;font-size:10px;color:#aaa;letter-spacing:.1em;white-space:nowrap;}
+.sdot{width:6px;height:6px;background:#00ff88;border-radius:50%;animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.ham span{display:block;width:22px;height:1.5px;background:var(--txt);transition:all .3s;}
+.ham.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.ham.open span:nth-child(2){opacity:0;}
+.ham.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+.mm{position:fixed;top:53px;left:0;width:100%;background:rgba(10,10,10,.98);border-bottom:1px solid var(--brd);padding:0 22px;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;z-index:190;}
+.mm.open{max-height:360px;padding:18px 22px;}
+.mm a{display:block;padding:13px 0;color:#ccc;text-decoration:none;font-size:13px;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid var(--brd);}
+.mm a:last-child{border-bottom:none;}
+.mm a:hover{color:var(--acc);}
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:116px 44px 60px;border-bottom:1px solid var(--brd);overflow:hidden;position:relative;}
+.hwm{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:clamp(90px,18vw,280px);font-weight:700;color:transparent;-webkit-text-stroke:1px #181818;white-space:nowrap;pointer-events:none;user-select:none;z-index:0;}
+.hi{position:relative;z-index:1;}
+.hew{font-size:10px;letter-spacing:.3em;color:#888;text-transform:uppercase;margin-bottom:18px;opacity:0;animation:fu .8s ease .1s forwards;}
+.hn{font-size:clamp(40px,9vw,112px);font-weight:700;line-height:.92;letter-spacing:-.03em;text-transform:uppercase;margin-bottom:40px;opacity:0;animation:fu .8s ease .3s forwards;}
+.hn .ac{color:var(--acc);display:block;}
+.hbot{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;flex-wrap:wrap;opacity:0;animation:fu .8s ease .5s forwards;}
+.hdesc{max-width:420px;color:#b8b8b8;font-size:12px;line-height:1.9;}
+.hdesc strong{color:var(--txt);}
+.hst{display:flex;gap:40px;flex-shrink:0;}
+.st{text-align:right;}
+.stnum{font-size:clamp(26px,4vw,38px);font-weight:700;color:var(--acc);display:block;line-height:1;}
+.stlbl{font-size:9px;color:#888;letter-spacing:.12em;text-transform:uppercase;}
+@keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.tk{border-top:1px solid var(--brd);border-bottom:1px solid var(--brd);padding:13px 0;overflow:hidden;background:rgba(16,16,16,.9);}
+.tkt{display:flex;white-space:nowrap;animation:sc 30s linear infinite;}
+.tki{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#888;padding:0 40px;display:flex;align-items:center;gap:16px;flex-shrink:0;}
+.tkd{width:4px;height:4px;background:var(--acc);border-radius:50%;flex-shrink:0;}
+@keyframes sc{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.sec{padding:84px 44px;border-bottom:1px solid var(--brd);background:rgba(10,10,10,.78);}
+.slbl{font-size:10px;letter-spacing:.3em;color:var(--acc);text-transform:uppercase;margin-bottom:32px;display:flex;align-items:center;gap:10px;}
+.slbl::before{content:'';width:20px;height:1px;background:var(--acc);}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:64px;}
+.ag h2{font-size:clamp(26px,3.5vw,50px);font-weight:700;line-height:1.05;letter-spacing:-.03em;text-transform:uppercase;margin-bottom:24px;}
+.ag h2 em{font-style:normal;color:var(--acc);}
+.ag p{color:#b8b8b8;font-size:12px;line-height:2;margin-bottom:12px;}
+.ic{padding-top:48px;}
+.ir{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid var(--brd);font-size:11px;}
+.ir:last-child{border-bottom:none;}
+.ik{color:#888;text-transform:uppercase;letter-spacing:.1em;}
+.iv{color:#ddd;text-align:right;}
+.eg{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--brd);margin-top:40px;}
+.ec{background:var(--bg);padding:32px;position:relative;overflow:hidden;transition:background .25s;}
+.ec::after{content:'';position:absolute;left:0;top:0;width:3px;height:0;background:var(--acc);transition:height .35s ease;}
+.ec:hover{background:var(--surf);}
+.ec:hover::after{height:100%;}
+.eco{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--acc);margin-bottom:5px;}
+.er{font-size:15px;font-weight:700;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:5px;color:var(--txt);}
+.ep{font-size:10px;color:#666;letter-spacing:.1em;margin-bottom:18px;display:flex;align-items:center;gap:8px;}
+.ep::after{content:'';flex:1;height:1px;background:var(--brd);}
+.el{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.el li{font-size:11px;color:#bbb;line-height:1.75;padding-left:16px;position:relative;}
+.el li::before{content:'→';position:absolute;left:0;color:var(--acc);}
+.sw{display:grid;grid-template-columns:220px 1fr;gap:44px;margin-top:40px;}
+.stabs{display:flex;flex-direction:column;gap:2px;}
+.stab{background:none;border:none;border-left:2px solid var(--brd);padding:12px 16px;text-align:left;color:#aaa;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.stab:hover,.stab.act{border-left-color:var(--acc);color:var(--txt);background:var(--surf);}
+.sbars{display:flex;flex-direction:column;gap:16px;}
+.srow{display:flex;flex-direction:column;gap:6px;}
+.shd{display:flex;justify-content:space-between;font-size:11px;color:#ccc;}
+.spct{color:var(--acc);}
+.str{height:2px;background:var(--brd);position:relative;overflow:hidden;}
+.sf{position:absolute;left:0;top:0;height:100%;background:var(--acc);width:0;transition:width 1.1s ease;}
+.pg{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--brd);margin-top:40px;}
+.pc{background:var(--bg);padding:32px;position:relative;overflow:hidden;transition:background .3s;}
+.pc:hover{background:#0e0e0e;}
+.pnum{position:absolute;top:28px;right:28px;font-size:52px;font-weight:700;color:var(--brd);line-height:1;pointer-events:none;}
+.ptag{display:inline-block;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);border:1px solid var(--acc);padding:3px 8px;margin-bottom:16px;}
+.ptit{font-size:18px;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:8px;color:var(--txt);}
+.pco{font-size:10px;color:#777;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;}
+.pd{font-size:11px;color:#bbb;line-height:1.85;}
+.hl{margin-top:40px;}
+.hr{display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:24px;padding:22px 0;border-bottom:1px solid var(--brd);transition:padding-left .2s;}
+.hr:hover{padding-left:8px;}
+.hn2{font-size:11px;color:var(--acc);letter-spacing:.1em;}
+.ht{font-size:13px;line-height:1.65;color:#ccc;}
+.ht strong{color:var(--txt);}
+.hbg{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#666;border:1px solid var(--brd);padding:3px 10px;white-space:nowrap;}
+.ghdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:32px;flex-wrap:wrap;gap:14px;}
+.gpl{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--acc);font-size:10px;letter-spacing:.18em;text-transform:uppercase;border:1px solid var(--acc);padding:9px 16px;transition:all .2s;}
+.gpl:hover{background:var(--acc);color:#000;}
+.gpl svg{width:14px;height:14px;fill:currentColor;}
+.gsr{display:flex;gap:2px;background:var(--brd);margin-bottom:32px;}
+.gst{flex:1;padding:18px;background:var(--bg);text-align:center;transition:background .2s;}
+.gst:hover{background:var(--surf);}
+.gsn{font-size:22px;font-weight:700;color:var(--acc);display:block;line-height:1;margin-bottom:3px;}
+.gsl{font-size:9px;color:#777;letter-spacing:.14em;text-transform:uppercase;}
+.rg{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--brd);}
+.rc{background:var(--bg);padding:28px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;transition:background .25s;text-decoration:none;color:inherit;}
+.rc::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--acc);transition:width .35s ease;}
+.rc:hover{background:var(--surf);}
+.rc:hover::after{width:100%;}
+.rct{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+.ric{width:34px;height:34px;border:1px solid var(--brd);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color .2s;}
+.rc:hover .ric{border-color:var(--acc);}
+.ric svg{width:16px;height:16px;fill:#777;}
+.rarr{font-size:15px;color:#444;transition:color .2s,transform .2s;flex-shrink:0;}
+.rc:hover .rarr{color:var(--acc);transform:translate(3px,-3px);}
+.rn{font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;color:var(--txt);line-height:1.15;}
+.rdesc{font-size:11px;color:#bbb;line-height:1.85;}
+.rmeta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:2px;}
+.rlng{display:flex;align-items:center;gap:5px;font-size:10px;color:#aaa;}
+.ld{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.lj{background:#b07219;}
+.lp{background:#3572A5;}
+.rtops{display:flex;gap:5px;flex-wrap:wrap;}
+.rtop{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--blu);border:1px solid rgba(74,158,255,.25);padding:2px 7px;}
+.gcta{background:var(--bg);border:1px solid var(--brd);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:24px 28px;margin-top:2px;transition:border-color .2s;}
+.gcta:hover{border-color:var(--acc);}
+.gcta p{font-size:12px;color:#999;}
+.gcta p strong{color:var(--txt);}
+.gctab{display:inline-flex;align-items:center;gap:7px;text-decoration:none;background:var(--acc);color:#000;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;padding:11px 20px;transition:opacity .2s;white-space:nowrap;}
+.gctab:hover{opacity:.85;}
+.gctab svg{width:13px;height:13px;fill:currentColor;}
+.edg{display:grid;grid-template-columns:1fr 1fr;gap:64px;}
+.edc{display:flex;flex-direction:column;gap:18px;margin-top:40px;}
+.ed{border:1px solid var(--brd);padding:28px;position:relative;transition:border-color .2s;}
+.ed:hover{border-color:var(--acc);}
+.eyr{position:absolute;top:18px;right:22px;font-size:38px;font-weight:700;color:var(--brd);line-height:1;}
+.edeg{font-size:14px;font-weight:700;text-transform:uppercase;margin-bottom:5px;color:var(--txt);}
+.ef{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:10px;}
+.ei{font-size:11px;color:#aaa;}
+.tc{padding-top:40px;}
+.tr2{display:flex;justify-content:space-between;align-items:center;padding:13px 15px;border:1px solid var(--brd);font-size:11px;color:#ccc;margin-bottom:8px;transition:border-color .2s;}
+.tr2:hover{border-color:var(--acc);}
+.tr2:last-child{margin-bottom:0;}
+.tok{color:var(--acc);}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+.chl{font-size:clamp(32px,5vw,70px);font-weight:700;text-transform:uppercase;line-height:.95;letter-spacing:-.03em;}
+.chl em{font-style:normal;color:var(--acc);}
+.cls{display:flex;flex-direction:column;gap:2px;}
+.cl{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border:1px solid var(--brd);text-decoration:none;color:var(--txt);font-size:12px;transition:all .2s;}
+.cl:hover{border-color:var(--acc);background:var(--surf);padding-right:28px;}
+.cll{font-size:9px;color:#777;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;}
+.ca{color:var(--acc);transition:transform .2s;font-size:15px;}
+.cl:hover .ca{transform:translateX(4px);}
+footer{border-top:1px solid var(--brd);padding:20px 44px;display:flex;justify-content:space-between;align-items:center;background:rgba(8,8,8,.96);flex-wrap:wrap;gap:8px;}
+footer span{font-size:10px;color:#555;letter-spacing:.1em;text-transform:uppercase;}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;}
+.rv.on{opacity:1;transform:translateY(0);}
+@media(max-width:1024px){
+  nav{padding:14px 24px;}
+  .nlinks{display:none;}
+  .ham{display:flex;}
+  .sec{padding:64px 24px;}
+  #hero{padding:104px 24px 52px;}
+  .ag,.eg,.pg,.edg,.cg{grid-template-columns:1fr;}
+  .ic{padding-top:0;}
+  .rg{grid-template-columns:1fr;}
+  .sw{grid-template-columns:1fr;}
+  .stabs{flex-direction:row;flex-wrap:wrap;gap:3px;}
+  .stab{border-left:none;border-bottom:2px solid var(--brd);padding:9px 13px;}
+  .stab:hover,.stab.act{border-bottom-color:var(--acc);}
+  .chl{font-size:clamp(32px,7vw,56px);}
+  footer{padding:18px 24px;}
+  .hr{grid-template-columns:44px 1fr;gap:16px;}
+  .hbg{display:none;}
+}
+@media(max-width:600px){
+  nav{padding:12px 16px;}
+  .nstat span{display:none;}
+  .sec{padding:52px 16px;}
+  #hero{padding:92px 16px 40px;}
+  .hn{font-size:clamp(34px,12vw,52px);}
+  .hbot{flex-direction:column;align-items:flex-start;}
+  .hst{gap:24px;}
+  .stnum{font-size:26px;}
+  .ec,.pc,.rc{padding:22px 18px;}
+  .er{font-size:13px;}
+  .ptit{font-size:15px;}
+  .pnum{font-size:38px;top:18px;right:18px;}
+  .chl{font-size:30px;}
+  footer{flex-direction:column;text-align:center;gap:5px;padding:16px;}
+  .ed{padding:22px 18px;}
+  .tki{padding:0 24px;}
+  .hwm{font-size:70px;}
+  .gsr{flex-wrap:wrap;}
+  .gst{min-width:calc(50% - 1px);}
+}
+</style></head>
+<body>
+<canvas id="cv"></canvas>
+<div id="sl"></div>
+<div class="cdot" id="cdot"></div>
+<div class="cring" id="cring"></div>
+
+<nav>
+  <div class="nlogo">NKJ — Portfolio</div>
+  <ul class="nlinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#exp">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#proj">Projects</a></li>
+    <li><a href="#gh">GitHub</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nright">
+    <div class="nstat"><div class="sdot"></div><span>Available</span></div>
+    <button class="ham" id="ham"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mm" id="mm">
+  <a href="#about" onclick="cMM()">About</a>
+  <a href="#exp" onclick="cMM()">Experience</a>
+  <a href="#skills" onclick="cMM()">Skills</a>
+  <a href="#proj" onclick="cMM()">Projects</a>
+  <a href="#gh" onclick="cMM()">GitHub</a>
+  <a href="#contact" onclick="cMM()">Contact</a>
+</div>
+
+<section id="hero">
+  <div class="hwm">QA</div>
+  <div class="hi">
+    <p class="hew">Software Engineer · Quality Assurance · Bengaluru, India</p>
+    <h1 class="hn">Nagabharana<span class="ac">K Jamadagni</span></h1>
+    <div class="hbot">
+      <p class="hdesc"><strong>QA Engineer with 3+ years</strong> building quality into complex systems. Expert in manual testing, API validation, SAP integrations and mobile application testing across microservices architectures.</p>
+      <div class="hst">
+        <div class="st"><span class="stnum">3+</span><span class="stlbl">Years XP</span></div>
+        <div class="st"><span class="stnum">30%</span><span class="stlbl">Defect Reduction</span></div>
+        <div class="st"><span class="stnum">20+</span><span class="stlbl">Test Scripts</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tk"><div class="tkt">
+  <span class="tki"><span class="tkd"></span>Manual Testing</span><span class="tki"><span class="tkd"></span>API Testing</span><span class="tki"><span class="tkd"></span>SAP Integration</span><span class="tki"><span class="tkd"></span>Mobile QA</span><span class="tki"><span class="tkd"></span>Playwright</span><span class="tki"><span class="tkd"></span>Postman</span><span class="tki"><span class="tkd"></span>JIRA</span><span class="tki"><span class="tkd"></span>Regression Testing</span><span class="tki"><span class="tkd"></span>Agile</span><span class="tki"><span class="tkd"></span>SQL</span><span class="tki"><span class="tkd"></span>Selenium</span><span class="tki"><span class="tkd"></span>TestRail</span>
+  <span class="tki"><span class="tkd"></span>Manual Testing</span><span class="tki"><span class="tkd"></span>API Testing</span><span class="tki"><span class="tkd"></span>SAP Integration</span><span class="tki"><span class="tkd"></span>Mobile QA</span><span class="tki"><span class="tkd"></span>Playwright</span><span class="tki"><span class="tkd"></span>Postman</span><span class="tki"><span class="tkd"></span>JIRA</span><span class="tki"><span class="tkd"></span>Regression Testing</span><span class="tki"><span class="tkd"></span>Agile</span><span class="tki"><span class="tkd"></span>SQL</span><span class="tki"><span class="tkd"></span>Selenium</span><span class="tki"><span class="tkd"></span>TestRail</span>
+</div></div>
+
+<section id="about" class="sec">
+  <div class="slbl rv">About</div>
+  <div class="ag">
+    <div class="rv">
+      <h2>Engineered for <em>Quality</em></h2>
+      <p>I specialize in catching what others miss. With a methodical approach to testing complex, microservices-based web and mobile applications, I ensure software ships with confidence.</p>
+      <p>From SAP modules to AI-powered features, I've tested systems real businesses depend on — reducing defect leakage and enabling smooth releases across every team I've joined.</p>
+    </div>
+    <div class="ic rv">
+      <div class="slbl">Info</div>
+      <div class="ir"><span class="ik">Location</span><span class="iv">Bengaluru, Karnataka</span></div>
+      <div class="ir"><span class="ik">Role</span><span class="iv">Software Engineer / QA</span></div>
+      <div class="ir"><span class="ik">Current</span><span class="iv">In Time Tec</span></div>
+      <div class="ir"><span class="ik">Email</span><span class="iv">jamadagni.nag@gmail.com</span></div>
+      <div class="ir"><span class="ik">Phone</span><span class="iv">+91 8892657320</span></div>
+      <div class="ir"><span class="ik">Languages</span><span class="iv">Kannada · English · Hindi</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="exp" class="sec">
+  <div class="slbl rv">Experience</div>
+  <div class="eg rv">
+    <div class="ec">
+      <div class="eco">In Time Tec</div><div class="er">Software Engineer</div>
+      <div class="ep">June 2025 — Present · Bengaluru</div>
+      <ul class="el">
+        <li>US Public Sector &amp; HP ITSM projects via Agile methodology</li>
+        <li>Comprehensive test scenarios from requirements &amp; user stories</li>
+        <li>Extensive API testing with Postman &amp; ATF automated framework</li>
+        <li>Playwright automation for end-to-end regression workflows</li>
+        <li>Client collaboration aligning testing with business logic</li>
+      </ul>
+    </div>
+    <div class="ec">
+      <div class="eco">Innovapptive Global Solutions</div><div class="er">Associate QA Engineer</div>
+      <div class="ep">Sep 2024 — Jun 2025 · Hyderabad</div>
+      <ul class="el">
+        <li>SAP ABAP &amp; Plant Maintenance module testing</li>
+        <li>Mobile app testing integrated with SAP Fiori &amp; backend</li>
+        <li>Data validation &amp; integration testing across SAP-mobile pipeline</li>
+        <li>Led regression testing &amp; coordinated UAT sessions</li>
+        <li>Validated AI features: AI Assist, AI Plan, AI Detection</li>
+      </ul>
+    </div>
+    <div class="ec">
+      <div class="eco">Vlookup Business Solutions Pvt Ltd</div><div class="er">Test Engineer, QA</div>
+      <div class="ep">Feb 2023 — Feb 2024 · Mysore</div>
+      <ul class="el">
+        <li>Manual testing for web &amp; mobile applications</li>
+        <li>Created detailed test cases &amp; execution plans</li>
+        <li>Database testing via SQL for backend data integrity</li>
+        <li>Defect tracking &amp; resolution through JIRA</li>
+      </ul>
+    </div>
+    <div class="ec">
+      <div class="eco">NGSportive Technology Pvt Ltd</div><div class="er">Sporting Specialist (Intern)</div>
+      <div class="ep">Aug 2021 — Feb 2022 · Mysore</div>
+      <ul class="el">
+        <li>Testing on web &amp; mobile organizational projects</li>
+        <li>Led internal business development initiatives</li>
+        <li>Supported account team assembly &amp; client meetings</li>
+        <li>Managed business development pipeline &amp; coaching</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="sec">
+  <div class="slbl rv">Technical Skills</div>
+  <div class="sw rv">
+    <div class="stabs" id="stabs">
+      <button class="stab act" data-c="testing">Testing</button>
+      <button class="stab" data-c="tools">Tools</button>
+      <button class="stab" data-c="tech">Tech</button>
+      <button class="stab" data-c="soft">Soft Skills</button>
+    </div>
+    <div class="sbars" id="sbars"></div>
+  </div>
+</section>
+
+<section id="proj" class="sec">
+  <div class="slbl rv">Projects</div>
+  <div class="pg rv">
+    <div class="pc">
+      <div class="pnum">01</div><div class="ptag">SAP · Mobile · AI</div>
+      <h3 class="ptit">mWorkorder &amp; iMaintenance</h3>
+      <div class="pco">Innovapptive · Sep 2024 – Jun 2025</div>
+      <p class="pd">End-to-end manual testing of SAP-integrated apps covering ABAP, Plant Maintenance and Fiori mobile. Validated AI-driven features: predictive suggestions, automated planning and anomaly detection. Led regression and UAT.</p>
+    </div>
+    <div class="pc">
+      <div class="pnum">02</div><div class="ptag">Web · Mobile · Freelance</div>
+      <h3 class="ptit">SPRYNT Platform</h3>
+      <div class="pco">Vlookup · Feb 2023 – Feb 2024</div>
+      <p class="pd">Comprehensive QA for SPRYNT's talent-scout platform. Test case development, regression plans, SQL database testing. Validated talent discovery, task assignment and real-time communication across multiple production releases.</p>
+    </div>
+    <div class="pc">
+      <div class="pnum">03</div><div class="ptag">WordPress · Web Dev</div>
+      <h3 class="ptit">7 WordPress Websites</h3>
+      <div class="pco">Personal / Business</div>
+      <p class="pd">Developed and launched 7 WordPress websites for business purposes, all currently live. Full cycle from setup to deployment and ongoing maintenance.</p>
+    </div>
+    <div class="pc">
+      <div class="pnum">04</div><div class="ptag">Automation · Selenium</div>
+      <h3 class="ptit">Automated Test Library</h3>
+      <div class="pco">Cross-project Initiative</div>
+      <p class="pd">Built and maintained 20+ automated test scripts and frameworks in Selenium. Comprehensive regression coverage achieved a 30% reduction in defect leakage across feature releases.</p>
+    </div>
+  </div>
+</section>
+
+<section id="hl" class="sec">
+  <div class="slbl rv">Key Highlights</div>
+  <div class="hl rv">
+    <div class="hr"><span class="hn2">01</span><span class="ht">Regression testing resulting in a <strong>30% reduction in defect leakage</strong></span><span class="hbg">Impact</span></div>
+    <div class="hr"><span class="hn2">02</span><span class="ht">Built a library of <strong>20+ automated test scripts</strong> using Selenium</span><span class="hbg">Automation</span></div>
+    <div class="hr"><span class="hn2">03</span><span class="ht">Validated <strong>AI-driven features</strong> — AI Assist, AI Plan &amp; AI Detection</span><span class="hbg">AI Testing</span></div>
+    <div class="hr"><span class="hn2">04</span><span class="ht">End-to-end testing for <strong>SAP PM and mobile apps</strong>, led UAT</span><span class="hbg">SAP</span></div>
+    <div class="hr"><span class="hn2">05</span><span class="ht">Launched <strong>7 live WordPress websites</strong> for business purposes</span><span class="hbg">Dev</span></div>
+    <div class="hr"><span class="hn2">06</span><span class="ht">Pivotal in <strong>multiple successful production releases</strong> of SPRYNT</span><span class="hbg">Delivery</span></div>
+  </div>
+</section>
+
+<section id="gh" class="sec">
+  <div class="ghdr rv">
+    <div class="slbl" style="margin-bottom:0">GitHub</div>
+    <a class="gpl" href="https://github.com/Nagabharana" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      View GitHub Profile →
+    </a>
+  </div>
+  <div class="gsr rv">
+    <div class="gst"><span class="gsn">2</span><span class="gsl">Repositories</span></div>
+    <div class="gst"><span class="gsn">2</span><span class="gsl">Languages</span></div>
+    <div class="gst"><span class="gsn">Java</span><span class="gsl">Language 1</span></div>
+    <div class="gst"><span class="gsn">Python</span><span class="gsl">Language 2</span></div>
+  </div>
+  <div class="rg rv">
+    <a class="rc" href="https://github.com/Nagabharana/CodingJ-s" target="_blank" rel="noopener">
+      <div class="rct">
+        <div class="ric"><svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg></div>
+        <span class="rarr">↗</span>
+      </div>
+      <div class="rn">CodingJ-s</div>
+      <p class="rdesc">Java-based coding practice repository with algorithm implementations, data structure exercises and programming problem solutions. Reflects hands-on Java development skills directly aligned with QA automation work.</p>
+      <div class="rtops"><span class="rtop">Java</span><span class="rtop">Algorithms</span><span class="rtop">Data Structures</span><span class="rtop">Practice</span></div>
+      <div class="rmeta"><span class="rlng"><span class="ld lj"></span>Java</span><span style="font-size:9px;color:#555;letter-spacing:.1em;text-transform:uppercase;">Public</span></div>
+    </a>
+    <a class="rc" href="https://github.com/Nagabharana/Sanskrit-metric-analyzer" target="_blank" rel="noopener">
+      <div class="rct">
+        <div class="ric"><svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg></div>
+        <span class="rarr">↗</span>
+      </div>
+      <div class="rn">Sanskrit Metric Analyzer</div>
+      <p class="rdesc">Python-based tool for analyzing Sanskrit meters (chandas). Processes classical Sanskrit text to identify and classify metrical patterns, demonstrating scripting, text processing and analytical programming skills.</p>
+      <div class="rtops"><span class="rtop">Python</span><span class="rtop">NLP</span><span class="rtop">Sanskrit</span><span class="rtop">Text Analysis</span></div>
+      <div class="rmeta"><span class="rlng"><span class="ld lp"></span>Python</span><span style="font-size:9px;color:#555;letter-spacing:.1em;text-transform:uppercase;">Public</span></div>
+    </a>
+  </div>
+  <div class="gcta rv">
+    <p><strong>Explore more on GitHub.</strong> Visit the full profile to follow updates and see contributions grow.</p>
+    <a class="gctab" href="https://github.com/Nagabharana" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      github.com/Nagabharana
+    </a>
+  </div>
+</section>
+
+<section id="edu" class="sec">
+  <div class="slbl rv">Education</div>
+  <div class="edg">
+    <div class="edc rv">
+      <div class="ed"><div class="eyr">2022</div><div class="edeg">Bachelor of Engineering</div><div class="ef">Information Science &amp; Engineering</div><div class="ei">JSS University, Mysore</div></div>
+      <div class="ed"><div class="eyr">2018</div><div class="edeg">Diploma</div><div class="ef">Information Science &amp; Technology</div><div class="ei">JSS Polytechnic, Mysore</div></div>
+    </div>
+    <div class="tc rv">
+      <div class="slbl">Tools &amp; Expertise</div>
+      <div class="tr2"><span>Postman API Testing</span><span class="tok">✓ Proficient</span></div>
+      <div class="tr2"><span>Playwright Automation</span><span class="tok">✓ Hands-on</span></div>
+      <div class="tr2"><span>JIRA / Bugzilla / TestRail</span><span class="tok">✓ Expert</span></div>
+      <div class="tr2"><span>SAP ABAP + Plant Maintenance</span><span class="tok">✓ Proficient</span></div>
+      <div class="tr2"><span>SQL Database Testing</span><span class="tok">✓ Proficient</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="sec">
+  <div class="slbl rv">Contact</div>
+  <div class="cg rv">
+    <h2 class="chl">Let's build <em>quality</em><br>together.</h2>
+    <div class="cls">
+      <a class="cl" href="mailto:jamadagni.nag@gmail.com"><div><div class="cll">Email</div><div>jamadagni.nag@gmail.com</div></div><span class="ca">→</span></a>
+      <a class="cl" href="tel:+918892657320"><div><div class="cll">Phone</div><div>+91 8892657320</div></div><span class="ca">→</span></a>
+      <a class="cl" href="https://linkedin.com/in/nagabharana-k-jamadagni" target="_blank"><div><div class="cll">LinkedIn</div><div>in/nagabharana-k-jamadagni</div></div><span class="ca">→</span></a>
+      <a class="cl" href="https://github.com/Nagabharana" target="_blank"><div><div class="cll">GitHub</div><div>github.com/Nagabharana</div></div><span class="ca">→</span></a>
+      <a class="cl" href="#"><div><div class="cll">Location</div><div>Bengaluru, Karnataka, India</div></div><span class="ca">→</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Nagabharana K Jamadagni</span>
+  <span>QA Engineer · Bengaluru</span>
+  <span>Built with Precision</span>
+</footer>
+
+<script>
+(function(){
+  var ham=document.getElementById('ham'),mm=document.getElementById('mm');
+  ham.addEventListener('click',function(){ham.classList.toggle('open');mm.classList.toggle('open');});
+  window.cMM=function(){ham.classList.remove('open');mm.classList.remove('open');};
+
+  var dot=document.getElementById('cdot'),ring=document.getElementById('cring');
+  var mx=window.innerWidth/2,my=window.innerHeight/2,rx=mx,ry=my;
+  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;});
+  (function lc(){dot.style.left=mx+'px';dot.style.top=my+'px';rx+=(mx-rx)*.13;ry+=(my-ry)*.13;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(lc);})();
+
+  var rvs=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting)en.target.classList.add('on');});},{threshold:.08});
+    rvs.forEach(function(el){io.observe(el);});
+  }else{rvs.forEach(function(el){el.classList.add('on');});}
+
+  var SD={
+    testing:[{n:'Manual Testing',p:95},{n:'Regression Testing',p:92},{n:'API Testing',p:88},{n:'Mobile App Testing',p:85},{n:'UAT Coordination',p:82},{n:'Integration Testing',p:80}],
+    tools:[{n:'JIRA',p:93},{n:'Postman',p:90},{n:'TestRail',p:80},{n:'Bugzilla',p:78},{n:'Selenium',p:75},{n:'Playwright',p:72}],
+    tech:[{n:'Agile / Scrum',p:90},{n:'REST API',p:86},{n:'SQL / Database',p:82},{n:'SAP Plant Maintenance',p:80},{n:'SAP ABAP',p:78},{n:'Java',p:65}],
+    soft:[{n:'Attention to Detail',p:96},{n:'Analytical Thinking',p:94},{n:'Cross-team Collaboration',p:90},{n:'Documentation',p:88},{n:'Project Management',p:82},{n:'Client Communication',p:80}]
+  };
+  function rs(cat){
+    var b=document.getElementById('sbars');b.innerHTML='';
+    SD[cat].forEach(function(s){
+      var d=document.createElement('div');d.className='srow';
+      d.innerHTML='<div class="shd"><span>'+s.n+'</span><span class="spct">'+s.p+'%</span></div><div class="str"><div class="sf"></div></div>';
+      b.appendChild(d);setTimeout(function(){d.querySelector('.sf').style.width=s.p+'%';},80);
+    });
+  }
+  document.querySelectorAll('.stab').forEach(function(t){
+    t.addEventListener('click',function(){
+      document.querySelectorAll('.stab').forEach(function(x){x.classList.remove('act');});
+      t.classList.add('act');rs(t.getAttribute('data-c'));
+    });
+  });
+  rs('testing');
+
+  var canvas=document.getElementById('cv'),ctx=canvas.getContext('2d');
+  function rsz(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+  rsz();window.addEventListener('resize',function(){rsz();mkC();});
+  var MC='01アイウカキクコサシスタチツナニハヒフマミ'.split(''),CW=18,cols=[];
+  function mkC(){
+    cols=[];var n=Math.ceil(canvas.width/CW)+1;
+    for(var i=0;i<n;i++){var len=7+Math.floor(Math.random()*11),ch=[];for(var j=0;j<20;j++)ch.push(MC[Math.floor(Math.random()*MC.length)]);cols.push({x:i*CW+9,y:Math.random()*-700,sp:.4+Math.random()*.9,len:len,ch:ch,a:.03+Math.random()*.055});}
+  }
+  mkC();
+  var SY=['{}','[]','()','//','===','!==','&&','||','++','null','true','false','return','const','let','async','await','PASS ✓','FAIL ✗','BUG','DEFECT','TEST','ASSERT','assert()','describe()','it()','GET /api','POST /api','200 OK','404','500','SELECT *','WHERE','JOIN','JIRA','Postman','Selenium','Playwright','npm test','console.log()','REST API','JSON','SAP PM','🐛','🔍','⚙️','🧪','📋','✅','❌','⚠️','🔧','💻','📊','01001','10110'];
+  var parts=[];
+  function mkP(ry){return{x:Math.random()*canvas.width,y:ry?Math.random()*canvas.height:canvas.height+50,vx:(Math.random()-.5)*.28,vy:-(0.14+Math.random()*.34),sym:SY[Math.floor(Math.random()*SY.length)],sz:8+Math.random()*7,a:.045+Math.random()*.13,life:0,ml:650+Math.random()*850,rot:(Math.random()-.5)*.3,rv:(Math.random()-.5)*.0018,col:Math.random()<.14?'#e8ff00':Math.random()<.09?'#ff4444':'#4a9eff'};}
+  for(var i=0;i<55;i++)parts.push(mkP(true));
+  var nodes=[];
+  for(var i=0;i<30;i++)nodes.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*.21,vy:(Math.random()-.5)*.21,r:1.4+Math.random()*2,a:.08+Math.random()*.2});
+  var streaks=[];
+  setInterval(function(){streaks.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,w:48+Math.random()*200,l:0,m:18+Math.random()*22});},950);
+  var rips=[],lx=0,ly=0;
+  document.addEventListener('mousemove',function(e){if(Math.abs(e.clientX-lx)+Math.abs(e.clientY-ly)>55){rips.push({x:e.clientX,y:e.clientY,r:0,a:.22});lx=e.clientX;ly=e.clientY;}});
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle='#191919';
+    for(var gx=0;gx<canvas.width;gx+=28)for(var gy=0;gy<canvas.height;gy+=28){ctx.beginPath();ctx.arc(gx,gy,.75,0,Math.PI*2);ctx.fill();}
+    ctx.font='13px monospace';
+    for(var ci=0;ci<cols.length;ci++){var col=cols[ci];col.y+=col.sp;if(col.y>canvas.height+220){col.y=-150;for(var cj=0;cj<col.ch.length;cj++)col.ch[cj]=MC[Math.floor(Math.random()*MC.length)];}for(var ck=0;ck<col.len;ck++){var isH=(ck===col.len-1),fade=isH?col.a*5:col.a*(1-ck/col.len*.5);ctx.fillStyle=isH?'rgba(232,255,0,'+Math.min(fade,.42)+')':'rgba(74,158,255,'+Math.min(fade,.24)+')';ctx.fillText(col.ch[ck%col.ch.length],col.x-6,col.y-ck*CW);}}
+    for(var ni=0;ni<nodes.length;ni++){var nd=nodes[ni];nd.x+=nd.vx;nd.y+=nd.vy;if(nd.x<0||nd.x>canvas.width)nd.vx*=-1;if(nd.y<0||nd.y>canvas.height)nd.vy*=-1;}
+    ctx.lineWidth=.5;
+    for(var ni=0;ni<nodes.length;ni++)for(var nj=ni+1;nj<nodes.length;nj++){var dx=nodes[ni].x-nodes[nj].x,dy=nodes[ni].y-nodes[nj].y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<155){ctx.strokeStyle='rgba(74,158,255,'+((1-dist/155)*.065)+')';ctx.beginPath();ctx.moveTo(nodes[ni].x,nodes[ni].y);ctx.lineTo(nodes[nj].x,nodes[nj].y);ctx.stroke();}}
+    for(var ni=0;ni<nodes.length;ni++){ctx.beginPath();ctx.arc(nodes[ni].x,nodes[ni].y,nodes[ni].r,0,Math.PI*2);ctx.fillStyle='rgba(74,158,255,'+nodes[ni].a+')';ctx.fill();}
+    for(var pi=parts.length-1;pi>=0;pi--){var p=parts[pi];p.x+=p.vx;p.y+=p.vy;p.rot+=p.rv;p.life++;var fade=p.life<60?p.life/60:p.life>p.ml-60?(p.ml-p.life)/60:1;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.globalAlpha=p.a*fade;ctx.fillStyle=p.col;ctx.font=p.sz+'px Space Mono,monospace';ctx.textAlign='center';ctx.fillText(p.sym,0,0);ctx.restore();if(p.life>=p.ml||p.y<-80)parts[pi]=mkP(false);}
+    for(var si=streaks.length-1;si>=0;si--){var s=streaks[si];s.l++;ctx.fillStyle='rgba(232,255,0,'+((1-s.l/s.m)*.24)+')';ctx.fillRect(s.x,s.y,s.w,1);if(s.l>=s.m)streaks.splice(si,1);}
+    for(var ri=rips.length-1;ri>=0;ri--){var rp=rips[ri];rp.r+=2.8;rp.a-=.0058;if(rp.a<=0){rips.splice(ri,1);continue;}ctx.beginPath();ctx.arc(rp.x,rp.y,rp.r,0,Math.PI*2);ctx.strokeStyle='rgba(232,255,0,'+rp.a+')';ctx.lineWidth=.9;ctx.stroke();}
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body></html>
